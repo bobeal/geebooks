@@ -1,0 +1,19 @@
+{
+  "name": "release",
+  "version": "0.0.1-SNAPSHOT",
+  "dependencies": {
+    "jquery": "~1.9.0",
+    "bootstrap": "https://github.com/twitter/bootstrap/archive/3.0.0-wip.zip",
+    "font-awesome": "~3.2.1",
+    "modernizr": "~2.6.2",
+    "conditionizr": "f01e4c638ef3477bb710659863ff1321220514d4",
+    "lodash": "~1.2.0",
+    "json3": "3.2.5",
+    "angular-latest": "~1.1.5",
+    "restangular": "~1.0.2",
+    "angular-http-auth": "git://github.com/witoldsz/angular-http-auth.git",
+    "angular-bootstrap": "~0.3.0",
+    "angular-ui-utils": "0.0.3",
+    "angular-ui-router": "0.0.1"
+  }
+}
