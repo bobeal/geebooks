@@ -48,16 +48,12 @@ object Application extends Controller {
       val responseJson = Await.result(futureResponseJson, Duration.Inf).get
       Logger.debug("Got response to email get : " + responseJson)
       val email = (responseJson \ "email").as[String]
-      var user:User = Users.findByEmail(email) match {
+      Users.findByEmail(email) match {
         case Some(user) => user
-        case None => {
-          val name = (responseJson \ "name").as[String]
-          val userId = Users.createOrMerge(new User(None, email, true, name, None, "", None))
-          Users.findById(userId).get
-        }
+        case None => Users.createFromGoogleInfos(responseJson)
       }
 
-      Redirect("/").withSession("email" -> user.email)
+      Redirect("/").withSession("email" -> email)
     }
   }
 }

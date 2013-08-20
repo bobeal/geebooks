@@ -31,7 +31,18 @@ object Users extends Table[User]("users") {
   
   implicit val formater = Json.format[User]
 
-  def createOrMerge(user: User): Int = {
+  def createFromGoogleInfos(userInfos: JsValue): Int = {
+    val email = (userInfos \ "email").as[String]
+    val verifiedEmail = (userInfos \ "verified_email").as[Boolean]
+    val name = (userInfos \ "name").as[String]
+    val picture = (userInfos \ "picture").as[Option[String]]
+    val gender = (userInfos \ "gender").as[String]
+    val birthday = (userInfos \ "birthday").as[Option[String]]
+
+    create(new User(None, email, verifiedEmail, name, picture, gender, birthday))
+  }
+  
+  def create(user: User): Int = {
     DB.withSession{ implicit session:Session =>
       Users.autoInc.insert(user.email, user.verifiedEmail, user.name, user.picture, user.gender, user.birthday)
     }
