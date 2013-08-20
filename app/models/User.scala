@@ -62,3 +62,10 @@ object Users extends Table[User]("users") {
 
   def fromSession(id: Int): Option[User] = findById(id)
 }
+
+trait Users {
+  implicit def user(implicit session: play.api.mvc.Session): User = {
+    Users.findByEmail(session.get("email").get).get
+  }
+}
+

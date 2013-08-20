@@ -1,7 +1,8 @@
-@(message: String)
+@(email: String)
 
-@main("Welcome to Play 2.1") {
-    
-    @play20.welcome(message)
-    
-}
+Welcome @email !
+
+<menu type="list" label="Index">
+  <li><a href="/book/add">Ajouter un livre à ma bibliothèque</a></li>
+  <li><a href="/books">Voir tous mes livres</a></li>
+</menu>
