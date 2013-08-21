@@ -20,25 +20,10 @@ var app = angular.module("app",
         url: "/",
         templateUrl: "/views/index"
       })
-      .state("users", {
-        url: "/users",
-        controller: "UsersCtrl",
-        templateUrl: "/views/users/list"
-      })
-      .state("user", {
-        url: "/users/{id}",
-        controller: "UserCtrl",
-        templateUrl: "/views/users/detail"
-      })
       .state("books", {
-        url: "/books?pattern",
+        url: "/books",
         controller: "BooksCtrl",
         templateUrl: "/views/books/list"
-      })
-      .state("book", {
-        url: "/books/{id}",
-        controller: "BookCtrl",
-        templateUrl: "/views/books/detail"
       });
 
       $urlRouterProvider.otherwise("/");
@@ -50,12 +35,4 @@ var app = angular.module("app",
       $rootScope.$location = $location;
       $rootScope.$state = $state;
       $rootScope.$stateParams = $stateParams;
-
-      $rootScope.globalSearch = {}
-      if($stateParams.pattern) {
-        $rootScope.globalSearch.pattern = $stateParams.pattern
-      }
-      $rootScope.search = function() {
-        $location.path("/books").search("pattern", $rootScope.globalSearch.pattern)
-      };
   }]);

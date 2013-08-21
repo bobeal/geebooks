@@ -1,0 +1,73 @@
+@()(implicit user: User)
+
+@import play.api.Play
+@import play.api.Play.current
+@import models.Configuration
+
+@defining(Configuration(Play.application.configuration)) { conf =>
+
+<!DOCTYPE html>
+
+<html data-ng-app="app">
+    <head>
+      <title>Geebooks</title>
+      <base href="/">
+      <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+
+      @if(Play.isProd) {
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/" + conf.styleName + "." + conf.version + ".min.css")">
+      } else {
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/navigation.css")">
+      }
+    </head>
+    <body>
+      <ol id="navigation">
+        <li class="home"><a href="/">Accueil</a></li>
+        <li class="books"><a href="/books">Ma collection</a></li>
+      </ol>
+      <div id="view" ui-view></div>
+
+      <script>
+        var userProfile = @Html({
+          import play.api.libs.json.Json
+          import Users.formater
+          Json.stringify(Json.toJson(user))
+        })
+      </script>
+      <!--
+      <hr/>
+      <h3>Debug</h3>
+      <ul>
+        <li>User name: @user.name</li>
+        <li>Abs url: {{$location.absUrl()}}</li>
+        <li>Url: {{$location.url()}}</li>
+        <li>Path: {{$location.path()}}</li>
+        <li>State Params: {{$stateParams | json}}</li>
+        <li>Search: {{$location.search() | json}}</li>
+      </ul>
+    -->
+
+      @if(Play.isProd) {
+        <script src="@routes.Assets.at("javascripts/" + conf.scriptName + "." + conf.version + ".min.js")" type="text/javascript"></script>
+      } else {
+        <script src="@routes.Assets.at("javascripts/vendors/jquery/jquery.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/vendors/lodash/lodash.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/vendors/angular/angular.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/vendors/angular/angular-resource.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/vendors/angular-ui/router/angular-ui-router.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/vendors/angular-ui/utils/ui-utils.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/vendors/angular-ui/bootstrap/ui-bootstrap-tpls.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/vendors/restangular/restangular.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/vendors/angular-http-auth/http-auth-interceptor.js")" type="text/javascript"></script>
+
+        <script src="@routes.Assets.at("javascripts/app.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/books/booksService.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/books/booksController.js")" type="text/javascript"></script>
+
+        <script src="http://localhost:35729/livereload.js?snipver=1" type="text/javascript"></script>
+      }
+    </body>
+</html>
+
+}

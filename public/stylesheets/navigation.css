@@ -1,0 +1,77 @@
+div#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+div#background > img {
+  width: 45%;
+}
+
+ol#navigation {
+  background-color: rgba(0, 0, 0, 0.25);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  width: 75px;
+  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+ol#navigation li {
+  list-style: none;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  position: relative;
+}
+
+ol#navigation li:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+ol#navigation li:first-child {
+  border-top: none;
+  padding-bottom: 4em;
+}
+
+ol#navigation li:last-child {
+  border-bottom: none;
+}
+
+ol#navigation li a {
+  display: block;
+  color: transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+ol#navigation li.home a {
+  padding: 25px;
+  background-image: url("/assets/images/logo.png");
+}
+
+ol#navigation li.books a {
+  padding: 15px;
+  background-image: url("/assets/images/biblio.png");
+}
+
+#view {
+  margin-left: 75px;
+  padding-left: 20px;
+  position: absolute;
+}
+
+#view h1 {
+  margin-top: 0;
+}
+
+table[ng-show=books] {
+  background-color: white;
+}

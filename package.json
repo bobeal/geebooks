@@ -1,12 +1,13 @@
 {
-  "author": "Releasers",
+  "author": "Geebooks",
   "contributors": [
     {
-      "name": "Benoit Orihuela"
+      "name": "Benoit Orihuela",
+      "name": "Valérie Simonnet"
     }
   ],
-  "name": "release",
-  "description": "Read, Learn, Share",
+  "name": "geebooks",
+  "description": "Share books with friends (or not)",
   "version": "0.0.1-SNAPSHOT",
   "homepage": "https://github.com/geebooks",
   "repository": {

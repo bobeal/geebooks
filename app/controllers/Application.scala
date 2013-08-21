@@ -11,6 +11,10 @@ import models.ws.OAuth2Client
 
 object Application extends Controller with Secured with Users {
 
+  def main(url: String) = IsAuthenticated { username => implicit request =>
+    Ok(views.html.templates.main())
+  }
+
   def index = IsAuthenticated { username => implicit request =>
     Ok(views.html.index(username))
   }
