@@ -6,7 +6,6 @@ import play.api.db.slick.Config.driver.simple._
 import play.api.db.slick.DB
 import scala.concurrent._
 import scala.concurrent.ExecutionContext.Implicits.global
-import org.joda.time.DateTime
 
 case class User(
   id: Option[Int],
@@ -25,10 +24,9 @@ object Users extends Table[User]("users") {
   def picture = column[String]("picture", O.Nullable)
   def gender = column[String]("gender")
   def birthday = column[String]("birthday", O.Nullable)
-  def * = id.? ~ email ~ verifiedEmail ~ name ~ picture.? ~ gender ~ birthday.? <> (User, User.unapply _)
 
+  def * = id.? ~ email ~ verifiedEmail ~ name ~ picture.? ~ gender ~ birthday.? <> (User, User.unapply _)
   def autoInc = email ~ verifiedEmail ~ name ~ picture.? ~ gender ~ birthday.? returning id
-  
   implicit val formater = Json.format[User]
 
   def createFromGoogleInfos(userInfos: JsValue): Int = {
