@@ -24,6 +24,11 @@ var app = angular.module("app",
         url: "/books",
         controller: "BooksCtrl",
         templateUrl: "/views/books/list"
+      })
+      .state("book", {
+        url: "/book/add",
+        controller: "BookController",
+        templateUrl: "/views/books/add"
       });
 
       $urlRouterProvider.otherwise("/");
