@@ -14,6 +14,7 @@ GET     /views/index                controllers.Application.index
 GET     /views/books/list           controllers.Books.list
 GET     /views/books/add            controllers.Books.add
 POST    /api/book                   controllers.Books.addBook
+GET     /api/books                  controllers.Books.listBooks
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

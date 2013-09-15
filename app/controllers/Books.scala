@@ -26,6 +26,20 @@ object Books extends Controller with Secured with Users {
     Ok(views.html.books.list())
   }
 
+  def listBooks = IsAuthenticated { username => implicit request =>
+    var jsonBooks = Json.arr(models.Books.list().map { book =>
+      Json.obj("id" -> book.id,
+               "isbn" -> book.isbn,
+               "author" -> book.author,
+               "title" -> book.title,
+               "description" -> book.description,
+               "genre" -> book.genre,
+               "releaseDate" -> book.releaseDate)
+    })
+
+    Ok(jsonBooks)
+  }
+
   def add = IsAuthenticated { username => implicit request =>
     Ok(views.html.books.add())
   }
